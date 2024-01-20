@@ -7,7 +7,7 @@ const searchForm = document.querySelector(".search-form");
 const gallery = document.querySelector(".gallery");
 const loaderEl = document.querySelector(".loader");
 
-const BASE_URL = "https://pixabay.com/api";
+const BASE_URL = "https://pixabay.com/api/";
 const API_KEY = "41900218-778e908913d1efd90b8f97d56"
 const imageType = "photo";
 const orientation = "horizontal";
