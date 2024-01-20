@@ -3,8 +3,9 @@ import "izitoast/dist/css/iziToast.min.css";
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 
-const searchForm = document.querySelector('.search-form');
-const gallery = document.querySelector('.gallery');
+const searchForm = document.querySelector(".search-form");
+const gallery = document.querySelector(".gallery");
+const loaderEl = document.querySelector(".loader");
 
 const BASE_URL = "https://pixabay.com/api";
 const API_KEY = "41900218-778e908913d1efd90b8f97d56"
@@ -12,11 +13,14 @@ const imageType = "photo";
 const orientation = "horizontal";
 const safeSearch = "true";
 
+loaderEl.style.display = "none";
+
 searchForm.addEventListener("submit", handleSerch);
 console.log(gallery);
 
 function handleSerch(event) {
     event.preventDefault();
+    loaderEl.style.display = "block";
     const form = event.currentTarget;
     console.log(form);
     const q = form.elements.query.value;
@@ -34,8 +38,11 @@ function handleSerch(event) {
             createMarkup(data.hits);
         })
         .catch((err) => console.error(err))
-        .finally(() => form.reset);
-    
+        .finally(() => {
+            form.reset();
+            loaderEl.style.display = "none";
+
+        });
 }
 
 function fetchImages(query) {
