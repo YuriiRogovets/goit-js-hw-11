@@ -2,18 +2,26 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla App Template</title>
+    <title>Homework-11</title>
     <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="./css/reset.css" />
   </head>
   <body>
-    
-    <section>
-      
-      <img src="./img/javascript.svg" alt="" />
-    </section>
 
-        <script type="module" src="./main.js"></script>
+    <form class="form-inline search-form">
+      <div class="form-group">
+        <input type="text" class="form-control" name="query" />
+      </div>
+    
+      <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+    <div class="container">
+      <span class="loader"></span>
+      <ul class="gallery"></ul>
+    </div>    
+    
+    <script type="module" src="./main.js"></script>
   </body>
 </html>
