@@ -17,15 +17,12 @@
   -webkit-text-size-adjust: 100%;
 }
 
-
 .search-form {
   display: flex;
   justify-content: center;
   gap: 8px;
   box-sizing: border-box;
-  margin-bottom: 30px;
-  
-  
+  margin-bottom: 30px;  
 }
 
 .form-control {
@@ -44,6 +41,14 @@
   color: #808080;
 }
 
+.form-control:hover {
+  border-color: #000;
+}
+
+.form-control:active {
+  border-color: #4E75FF;
+}
+
 .btn {
   display: flex;
   width: auto;
@@ -57,6 +62,10 @@
   border: none;
 }
 
+.btn:hover {
+  background: #6C8CFF;
+}
+
 
 .gallery {
   display: flex;
@@ -67,7 +76,6 @@
   height: 716px;
   padding: 32px 156px 36px;
   background-color: #fff;
-  
 }
 
 .gallery-card {
@@ -75,7 +83,7 @@
   box-sizing: border-box;
   width: 360px;
   height: 200px;
-  border: 1px solid #808080;
+  border: 1px solid #cac8c8;
   border-radius: 4px;
 }
 
@@ -90,8 +98,6 @@
   display: inline-flex;
   gap: 8px;
   justify-content: space-around;
-
- 
   width: 360px;
   height: 48px;
 }

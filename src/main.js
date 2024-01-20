@@ -16,23 +16,23 @@ const safeSearch = "true";
 loaderEl.style.display = "none";
 
 searchForm.addEventListener("submit", handleSerch);
-console.log(gallery);
+
 
 function handleSerch(event) {
     event.preventDefault();
     loaderEl.style.display = "block";
-    const form = event.currentTarget;
-    console.log(form);
-    const q = form.elements.query.value;
-    console.log(q);
 
+    const form = event.currentTarget;
+    const q = form.elements.query.value;
+    
     fetchImages(q)
         .then(data => {
             if (data.hits.length === 0) {
-                iziToast.show({
+                iziToast.error({
                 message: "Sorry, there are no images matching your search query. Please try again!",
                 position: "topRight",
-                color: "red",
+                backgroundColor: "red",
+                icon: "none",
                 });
             }
             createMarkup(data.hits);
@@ -56,7 +56,7 @@ function fetchImages(query) {
 
 const lightboxEl = new SimpleLightbox('.gallery a', {
     captionsData: "alt",
-    captionDelay: 250,
+    captionDelay: 250,    
 });
 
 
