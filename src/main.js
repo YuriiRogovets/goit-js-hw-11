@@ -7,20 +7,18 @@ const searchForm = document.querySelector(".search-form");
 const gallery = document.querySelector(".gallery");
 const loaderEl = document.querySelector(".loader");
 
-const BASE_URL = "https://pixabay.com/api";
-const API_KEY = "41900218-778e908913d1efd90b8f97d56"
-const imageType = "photo";
-const orientation = "horizontal";
-const safeSearch = "true";
+const lightboxEl = new SimpleLightbox('.gallery a', {
+    captionsData: "alt",
+    captionDelay: 250,    
+});
 
-loaderEl.style.display = "none";
 
 searchForm.addEventListener("submit", handleSerch);
-
 
 function handleSerch(event) {
     event.preventDefault();
     loaderEl.style.display = "block";
+    gallery.innerHTML = "";
 
     const form = event.currentTarget;
     const q = form.elements.query.value;
@@ -41,12 +39,23 @@ function handleSerch(event) {
         .finally(() => {
             form.reset();
             loaderEl.style.display = "none";
-
         });
 }
 
 function fetchImages(query) {
-    return fetch(`${BASE_URL}/?key=${API_KEY}&q=${query}&image_type=${imageType}&orientation=${orientation}&safesearch=${safeSearch}`).then(resp => {
+
+    const BASE_URL = "https://pixabay.com/api";
+    const API_KEY = "41900218-778e908913d1efd90b8f97d56"
+
+    const createSearchParams = new URLSearchParams({
+    key: API_KEY,
+    q: query,
+    image_type: "photo",
+    orientation: "horizontal",
+    safesearch: "true",
+    })
+
+    return fetch(`${BASE_URL}/?${createSearchParams}`).then(resp => {
         if (!resp.ok) {
             throw new Error(resp.status);
         }
@@ -54,14 +63,9 @@ function fetchImages(query) {
     })
 }
 
-const lightboxEl = new SimpleLightbox('.gallery a', {
-    captionsData: "alt",
-    captionDelay: 250,    
-});
-
 
 function createMarkup(arr) {
-    const markup = arr.map(({ largeImageURL, webformatURL, tags, likes, views, comments, downloads }) => 
+    const markup = arr.map(({ largeImageURL, webformatURL, tags, likes, views, comments, downloads }) =>     
     `<li class="gallery-card">
         <a class="gallery-link" href="${webformatURL}">
             <img 
