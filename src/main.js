@@ -21,7 +21,7 @@ function handleSerch(event) {
     gallery.innerHTML = "";
 
     const form = event.currentTarget;
-    const q = form.elements.query.value;
+    const q = form.elements.query.value.trim();
     
     fetchImages(q)
         .then(data => {
