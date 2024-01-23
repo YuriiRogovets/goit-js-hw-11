@@ -35,7 +35,14 @@ function handleSerch(event) {
             }
             createMarkup(data.hits);
         })
-        .catch((err) => console.error(err))
+        .catch((err) => {
+            iziToast.error({
+                    message: "Oops, server connection error!",
+                    position: "topRight",
+                    backgroundColor: "red",
+                    icon: "none",
+                });
+        })
         .finally(() => {
             form.reset();
             loaderEl.style.display = "none";
